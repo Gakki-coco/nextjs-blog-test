@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import React from 'react'
@@ -6,11 +5,6 @@ import React from 'react'
 export default function Home() {
     return (
         <div className={styles.container}>
-            {/*<Head>*/}
-            {/*    <title>我的博客</title>*/}
-            {/*    <link rel="icon" href={'/favicon.ico'}/>*/}
-            {/*</Head>*/}
-
             <main className={styles.main}>
                 <h1 className={styles.title}>
                     第一篇文章
