@@ -15,7 +15,7 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-var _typeorm = require("typeorm");
+var _index = require("typeorm/index");
 
 var CreatPost1598103523279 = /*#__PURE__*/function () {
   function CreatPost1598103523279() {
@@ -31,7 +31,7 @@ var CreatPost1598103523279 = /*#__PURE__*/function () {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return queryRunner.createTable(new _typeorm.Table({
+                return queryRunner.createTable(new _index.Table({
                   name: 'posts',
                   columns: [{
                     name: 'id',

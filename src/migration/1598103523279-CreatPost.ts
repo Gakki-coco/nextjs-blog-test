@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table} from 'typeorm'
+import {MigrationInterface, QueryRunner, Table} from 'typeorm/index'
 
 export class CreatPost1598103523279 implements MigrationInterface {
 
