@@ -14,7 +14,7 @@ var _Post = require("./entity/Post");
 
 (0, _index.createConnection)().then( /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(connection) {
-    var posts, p, posts2;
+    var posts;
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -24,24 +24,28 @@ var _Post = require("./entity/Post");
 
           case 2:
             posts = _context.sent;
-            console.log(posts);
-            p = new _Post.Post();
-            p.title = 'Post 1';
-            p.content = '我得第一篇文章';
+
+            if (!(posts.length === 0)) {
+              _context.next = 7;
+              break;
+            }
+
+            _context.next = 6;
+            return connection.manager.save([1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(function (n) {
+              return new _Post.Post({
+                title: "Post ".concat(n),
+                content: "\u8FD9\u662F\u6211\u7684\u7B2C".concat(n, "\u7BC7\u6587\u7AE0")
+              });
+            }));
+
+          case 6:
+            console.log('post 数据填充完了');
+
+          case 7:
             _context.next = 9;
-            return connection.manager.save(p);
-
-          case 9:
-            _context.next = 11;
-            return connection.manager.find(_Post.Post);
-
-          case 11:
-            posts2 = _context.sent;
-            console.log(posts2);
-            _context.next = 15;
             return connection.close();
 
-          case 15:
+          case 9:
           case "end":
             return _context.stop();
         }
