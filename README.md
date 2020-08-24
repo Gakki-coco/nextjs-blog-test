@@ -14,15 +14,18 @@ CREATE DATABASE blog_development ENCODING 'UTF8' LC_COLLATE 'en_US.utf8' LC_CTYP
 // 操作数据库
 \l
 \dt
+\c blog_development
+\d users
 drop database blog_development;
-
 ```
 
 ## typeorm
 
 ```
 // 创建表
-yarn typeorm migration:create -n CreatUsers
+typeorm migration:create -n CreatUsers
+typeorm migration:run
+typeorm migration:revert
 ```
 
 ## 开发
