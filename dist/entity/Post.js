@@ -19,15 +19,33 @@ var _initializerWarningHelper2 = _interopRequireDefault(require("@babel/runtime/
 
 var _index = require("typeorm/index");
 
-var _dec, _dec2, _dec3, _dec4, _class, _class2, _descriptor, _descriptor2, _descriptor3, _temp;
+var _User = require("./User");
 
-var Post = (_dec = (0, _index.Entity)('posts'), _dec2 = (0, _index.PrimaryGeneratedColumn)('increment'), _dec3 = (0, _index.Column)('varchar'), _dec4 = (0, _index.Column)('text'), _dec(_class = (_class2 = (_temp = function Post(attributes) {
+var _Comment = require("./Comment");
+
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _temp;
+
+var Post = (_dec = (0, _index.Entity)('posts'), _dec2 = (0, _index.PrimaryGeneratedColumn)('increment'), _dec3 = (0, _index.Column)('varchar'), _dec4 = (0, _index.Column)('text'), _dec5 = (0, _index.CreateDateColumn)('time'), _dec6 = (0, _index.UpdateDateColumn)('time'), _dec7 = (0, _index.ManyToOne)(function (type) {
+  return _User.User;
+}, function (user) {
+  return user.posts;
+}), _dec8 = (0, _index.OneToMany)(function (type) {
+  return _Comment.Comment;
+}, function (comment) {
+  return comment.post;
+}), _dec(_class = (_class2 = (_temp = function Post() {
   (0, _classCallCheck2["default"])(this, Post);
   (0, _initializerDefineProperty2["default"])(this, "id", _descriptor, this);
   (0, _initializerDefineProperty2["default"])(this, "title", _descriptor2, this);
   (0, _initializerDefineProperty2["default"])(this, "content", _descriptor3, this);
-  Object.assign(this, attributes);
-}, _temp), (_descriptor = (0, _applyDecoratedDescriptor2["default"])(_class2.prototype, "id", [_dec2], {
+  (0, _initializerDefineProperty2["default"])(this, "createdAt", _descriptor4, this);
+  (0, _initializerDefineProperty2["default"])(this, "updatedAt", _descriptor5, this);
+  (0, _initializerDefineProperty2["default"])(this, "author", _descriptor6, this);
+  (0, _initializerDefineProperty2["default"])(this, "comments", _descriptor7, this);
+} // constructor(attributes: Partial<Post>) {
+//     Object.assign(this, attributes)
+// }
+, _temp), (_descriptor = (0, _applyDecoratedDescriptor2["default"])(_class2.prototype, "id", [_dec2], {
   configurable: true,
   enumerable: true,
   writable: true,
@@ -38,6 +56,26 @@ var Post = (_dec = (0, _index.Entity)('posts'), _dec2 = (0, _index.PrimaryGenera
   writable: true,
   initializer: null
 }), _descriptor3 = (0, _applyDecoratedDescriptor2["default"])(_class2.prototype, "content", [_dec4], {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  initializer: null
+}), _descriptor4 = (0, _applyDecoratedDescriptor2["default"])(_class2.prototype, "createdAt", [_dec5], {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  initializer: null
+}), _descriptor5 = (0, _applyDecoratedDescriptor2["default"])(_class2.prototype, "updatedAt", [_dec6], {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  initializer: null
+}), _descriptor6 = (0, _applyDecoratedDescriptor2["default"])(_class2.prototype, "author", [_dec7], {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  initializer: null
+}), _descriptor7 = (0, _applyDecoratedDescriptor2["default"])(_class2.prototype, "comments", [_dec8], {
   configurable: true,
   enumerable: true,
   writable: true,
