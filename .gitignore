@@ -7,7 +7,7 @@
 /.pnp
 .pnp.js
 /blog-data/
-/dist/
+/dist
 
 # testing
 /coverage

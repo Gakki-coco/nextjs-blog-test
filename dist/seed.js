@@ -10,38 +10,24 @@ require("reflect-metadata");
 
 var _index = require("typeorm/index");
 
-var _Post = require("./entity/Post");
+var _User = require("./entity/User");
 
 (0, _index.createConnection)().then( /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(connection) {
-    var posts;
+    var manager, u1;
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.next = 2;
-            return connection.manager.find(_Post.Post);
-
-          case 2:
-            posts = _context.sent;
-
-            if (!(posts.length === 0)) {
-              _context.next = 7;
-              break;
-            }
-
+            manager = connection.manager;
+            u1 = new _User.User();
+            u1.username = 'gakki';
+            u1.passwordDigest = 'xxx';
             _context.next = 6;
-            return connection.manager.save([1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(function (n) {
-              return new _Post.Post({
-                title: "Post ".concat(n),
-                content: "\u8FD9\u662F\u6211\u7684\u7B2C".concat(n, "\u7BC7\u6587\u7AE0")
-              });
-            }));
+            return manager.save(u1);
 
           case 6:
-            console.log('post 数据填充完了');
-
-          case 7:
+            console.log(u1.id);
             _context.next = 9;
             return connection.close();
 

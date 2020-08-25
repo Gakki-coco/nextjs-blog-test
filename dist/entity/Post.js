@@ -25,7 +25,7 @@ var _Comment = require("./Comment");
 
 var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _temp;
 
-var Post = (_dec = (0, _index.Entity)('posts'), _dec2 = (0, _index.PrimaryGeneratedColumn)('increment'), _dec3 = (0, _index.Column)('varchar'), _dec4 = (0, _index.Column)('text'), _dec5 = (0, _index.CreateDateColumn)('time'), _dec6 = (0, _index.UpdateDateColumn)('time'), _dec7 = (0, _index.ManyToOne)(function (type) {
+var Post = (_dec = (0, _index.Entity)('posts'), _dec2 = (0, _index.PrimaryGeneratedColumn)('increment'), _dec3 = (0, _index.Column)('varchar'), _dec4 = (0, _index.Column)('text'), _dec5 = (0, _index.CreateDateColumn)(), _dec6 = (0, _index.UpdateDateColumn)(), _dec7 = (0, _index.ManyToOne)(function (type) {
   return _User.User;
 }, function (user) {
   return user.posts;

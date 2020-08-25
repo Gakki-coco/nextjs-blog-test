@@ -17,13 +17,10 @@ export class Comment {
     @Column('text')
     content: string
 
-    @Column('')
-    authorID: number
-
-    @CreateDateColumn('time')
+    @CreateDateColumn()
     createdAt: Date
 
-    @UpdateDateColumn('time')
+    @UpdateDateColumn()
     updatedAt: Date
 
     @ManyToOne(type => User, user => user.comments)
