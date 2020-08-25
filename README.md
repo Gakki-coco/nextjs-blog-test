@@ -16,7 +16,20 @@ CREATE DATABASE blog_development ENCODING 'UTF8' LC_COLLATE 'en_US.utf8' LC_CTYP
 \dt
 \c blog_development
 \d users
+select * from users;
 drop database blog_development;
+```
+
+## 清空开发环境
+```
+docker ps
+docker kill 容器id
+docker rm 容器id
+
+rm -rf blog-data
+或
+docker container prune 
+docker volume rm blog-data
 ```
 
 ## typeorm
