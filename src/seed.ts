@@ -29,4 +29,6 @@ createConnection().then(async connection => {
 
     await connection.close()
 
+    console.log('数据填充成功(๑•̀ㅂ•́)و✧')
+
 }).catch(error => console.log(error))
