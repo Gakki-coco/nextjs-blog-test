@@ -2,7 +2,9 @@ import {GetServerSideProps, NextPage} from 'next'
 import {UAParser} from 'ua-parser-js'
 import {useEffect, useState} from 'react'
 import {getDatabaseConnection} from 'lib/getDatabaseConnection'
-console.log('执行了 index.tsx')
+import {Post} from 'src/entity/Post'
+
+
 type Props = {
     browser: {
         name: string
@@ -30,7 +32,8 @@ export default Index
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const connection = await getDatabaseConnection()
-    console.log('connection')
+    const posts = await connection.manager.find(Post)
+    console.log(posts)
     const ua = context.req.headers['user-agent']
     const result = new UAParser(ua).getResult()
     return {
