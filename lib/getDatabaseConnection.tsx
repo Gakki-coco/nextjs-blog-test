@@ -1,8 +1,17 @@
-import {createConnection} from 'typeorm/index'
+import {createConnection, getConnectionManager} from 'typeorm'
 
 const promise = (async function () {
-    console.log('创建connection111')
-    return await createConnection()
+    const manager = getConnectionManager()
+    if (!manager.has('default')) {
+        return createConnection()
+    } else {
+        const current = manager.get('default')
+        if (current.isConnected) {
+            return current
+        } else {
+            return createConnection()
+        }
+    }
 })()
 
 
