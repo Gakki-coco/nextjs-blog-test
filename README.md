@@ -13,13 +13,15 @@ docker run -v "blog-data":/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_USER
 
 ## 清空之前的开发环境
 ```
+drop database blog_development;
+
 docker ps
 docker kill 容器id
 docker rm 容器id
 
 rm -rf blog-data
 或
-docker container prune 
+docker container prune
 docker volume rm blog-data
 ```
 
@@ -34,13 +36,11 @@ CREATE DATABASE blog_development ENCODING 'UTF8' LC_COLLATE 'en_US.utf8' LC_CTYP
 \c blog_development;
 \d users;
 select * from users;
-drop database blog_development;
 ```
 
 ## 使用 typeorm 创建数据表
-Windows 需要修改 ormconfig.json 中的 host
+开始前需要 yarn dev 编译 并且Windows 需要修改 ormconfig.json 中的 host
 ```
-typeorm migration:create -n CreatUsers
 typeorm migration:run
 typeorm migration:revert
 
