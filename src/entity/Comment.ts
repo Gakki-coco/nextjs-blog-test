@@ -5,7 +5,7 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
     ManyToOne
-} from 'typeorm/index'
+} from 'typeorm'
 import {User} from './User'
 import {Post} from './Post'
 

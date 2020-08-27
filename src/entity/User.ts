@@ -1,7 +1,16 @@
-import {Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany} from 'typeorm/index'
+import {
+    Entity,
+    Column,
+    PrimaryGeneratedColumn,
+    CreateDateColumn,
+    UpdateDateColumn,
+    OneToMany,
+    BeforeInsert
+} from 'typeorm'
 import {Post} from './Post'
 import {Comment} from './Comment'
 import {getDatabaseConnection} from '../../lib/getDatabaseConnection'
+import md5 from 'md5'
 
 @Entity('users')
 
@@ -66,5 +75,10 @@ export class User {
 
     hasErrors() {
         return !!Object.values(this.errors).find(value => value.length > 0)
+    }
+
+    @BeforeInsert()
+    generatePasswordDigest() {
+        this.passwordDigest = md5(this.password)
     }
 }

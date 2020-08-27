@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table} from 'typeorm/index'
+import {MigrationInterface, QueryRunner, Table} from 'typeorm'
 
 export class CreateComments1598248959488 implements MigrationInterface {
 

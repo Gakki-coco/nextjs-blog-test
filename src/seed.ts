@@ -1,5 +1,5 @@
 import 'reflect-metadata'
-import {createConnection} from 'typeorm/index'
+import {createConnection} from 'typeorm'
 import {User} from './entity/User'
 import {Post} from './entity/Post'
 import {Comment} from './entity/Comment'

@@ -6,7 +6,7 @@ import {
     UpdateDateColumn,
     ManyToOne,
     OneToMany
-} from 'typeorm/index'
+} from 'typeorm'
 import {User} from './User'
 import {Comment} from './Comment'
 

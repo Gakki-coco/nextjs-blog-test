@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner} from 'typeorm/index'
+import {MigrationInterface, QueryRunner} from 'typeorm'
 
 export class RenameColumns1598250503300 implements MigrationInterface {
 
