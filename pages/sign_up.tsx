@@ -1,6 +1,6 @@
 import {NextPage} from 'next'
 import {useCallback, useState} from 'react'
-import axios from 'axios'
+import axios, {AxiosResponse} from 'axios'
 
 const signUp: NextPage = () => {
     const [formData, setFormData] = useState({
@@ -8,14 +8,27 @@ const signUp: NextPage = () => {
         password: '',
         passwordConfirmation: ''
     })
-    const onSubmit = useCallback((e)=> {
+    const [errors, setErrors] = useState({
+        username: [],
+        password: [],
+        passwordConfirmation: []
+    })
+    const onSubmit = useCallback((e) => {
         e.preventDefault()
         axios.post('/api/v1/users', formData)
+            .then(() => {
+            }, (error) => {
+                const response: AxiosResponse = error.response
+                if (response) {
+                    if (response.status === 422) {
+                        setErrors({...errors, ...response.data})
+                    }
+                }
+            })
     }, [formData])
     return (
         <>
             <h1>注册</h1>
-            {JSON.stringify(formData)}
             <form onSubmit={onSubmit}>
                 <div>
                     <label>用户名
@@ -26,6 +39,9 @@ const signUp: NextPage = () => {
                                })}
                         />
                     </label>
+                    {errors.username?.length > 0 && <div>
+                        {errors.username.join(',')}
+                    </div>}
                 </div>
                 <div>
                     <label>密码
@@ -36,6 +52,9 @@ const signUp: NextPage = () => {
                                })}
                         />
                     </label>
+                    {errors.password?.length > 0 && <div>
+                        {errors.password.join(',')}
+                    </div>}
                 </div>
                 <div>
                     <label>重复密码
@@ -46,6 +65,9 @@ const signUp: NextPage = () => {
                                })}
                         />
                     </label>
+                    {errors.passwordConfirmation?.length > 0 && <div>
+                        {errors.passwordConfirmation.join(',')}
+                    </div>}
                 </div>
                 <div>
                     <button type="submit">注册</button>
