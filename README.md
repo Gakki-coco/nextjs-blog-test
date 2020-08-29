@@ -59,3 +59,7 @@ yarn dev
 yarn build
 yarn start
 ```
+
+## 规范
+entity 的 model 是在数据库存储的
+model 的 model 没有存储在数据库
