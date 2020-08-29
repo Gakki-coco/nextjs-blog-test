@@ -22,7 +22,7 @@ const signUp: NextPage = () => {
                 const response: AxiosResponse = error.response
                 if (response) {
                     if (response.status === 422) {
-                        setErrors(response.data.errors)
+                        setErrors(response.data)
                     }
                 }
             })

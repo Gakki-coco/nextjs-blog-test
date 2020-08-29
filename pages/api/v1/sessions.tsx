@@ -17,11 +17,11 @@ const Sessions: NextApiHandler = async (req, res) => {
             res.end(JSON.stringify(user))
         } else {
             res.statusCode = 422
-            res.end(JSON.stringify({errors: {password: ['密码不匹配']}}))
+            res.end(JSON.stringify({password: ['密码不匹配']}))
         }
     } else {
         res.statusCode = 422
-        res.end(JSON.stringify({errors: {username: ['用户名不存在']}}))
+        res.end(JSON.stringify({username: ['用户名不存在']}))
     }
 
     // res.statusCode = 200
