@@ -1,36 +1,23 @@
 import {GetServerSideProps, GetServerSidePropsContext, NextPage} from 'next'
-import axios, {AxiosResponse} from 'axios'
+import axios from 'axios'
 import withSession from 'lib/withSession'
 import {User} from 'src/entity/User'
 import {useForm} from 'hooks/useForm'
 
 const signIn: NextPage<{ user: User }> = (props) => {
-    const onSubmit = (formData: typeof initFormData) => {
-        axios.post('/api/v1/sessions', formData)
-            .then(() => {
-                window.alert('登录成功')
-            }, (error) => {
-                const response: AxiosResponse = error.response
-                if (response) {
-                    if (response.status === 422) {
-                        setErrors(response.data)
-                    }
-                }
-            })
-    }
-    const initFormData = {
-        username: '',
-        password: ''
-    }
 
-    const {form, setErrors} = useForm({
-            initFormData,
+
+    const {form} = useForm({
+            initFormData: {username: '', password: ''},
             fields: [
                 {label: '用户名', type: 'text', key: 'username'},
                 {label: '密码', type: 'password', key: 'password'}
             ],
             buttons: <button type="submit">登录</button>,
-            onSubmit
+            submit: {
+                request: formData => axios.post('/api/v1/sessions', formData),
+                message: '提交成功'
+            }
         }
     )
     return (
