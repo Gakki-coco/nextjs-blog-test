@@ -1,46 +1,37 @@
 import {NextPage} from 'next'
-import {useCallback, useState} from 'react'
-import {Form} from 'components/Form'
+import {useForm} from 'hooks/useForm'
+import axios, {AxiosResponse} from 'axios'
 
-const PostsNew: NextPage = ()=> {
-    const [formData, setFormData] = useState({
-        title: '',
-        content: ''
-    })
-    const [errors, setErrors] = useState({
-        title: [],
-        content: []
-    })
-    const onSubmit = useCallback((e) => {
-        e.preventDefault()
-    }, [formData])
+const PostsNew: NextPage = () => {
+    const onSubmit = (formData: typeof initFormData) => {
+        axios.post('/api/v1/posts', formData)
+            .then(() => {
+                window.alert('提交成功')
+            }, (error) => {
+                const response: AxiosResponse = error.response
+                if (response) {
+                    if (response.status === 422) {
+                        setErrors(response.data)
+                    }
+                }
+            })
+    }
+    const initFormData = {title: '', content: ''}
 
-    const onChange = useCallback((key, value) => {
-        setFormData({
-            ...formData,
-            [key]: value
-        })
-    }, [formData])
+    const {form, setErrors} = useForm({
+            initFormData,
+            fields: [
+                {label: '标题', type: 'text', key: 'title'},
+                {label: '内容', type: 'textarea', key: 'content'}
+            ],
+            buttons: <button type="submit">提交</button>,
+            onSubmit
+        }
+    )
     return (
-        <>
-            <Form onSubmit={onSubmit}
-                  fields={[
-                      {
-                          label: '标题', type: 'text', value: formData.title,
-                          onChange: e => onChange('title', e.target.value),
-                          errors: errors.title
-                      },
-                      {
-                          label: '内容', type: 'textarea', value: formData.content,
-                          onChange: e => onChange('content', e.target.value),
-                          errors: errors.content
-                      }
-                  ]}
-                  buttons={<>
-                      <button type="submit">提交</button>
-                  </>}
-            />
-        </>
+        <div>
+            {form}
+        </div>
     )
 }
 
