@@ -3,6 +3,7 @@ import axios from 'axios'
 import withSession from 'lib/withSession'
 import {User} from 'src/entity/User'
 import {useForm} from 'hooks/useForm'
+import qs from 'querystring'
 
 const signIn: NextPage<{ user: User }> = (props) => {
 
@@ -16,7 +17,11 @@ const signIn: NextPage<{ user: User }> = (props) => {
             buttons: <button type="submit">登录</button>,
             submit: {
                 request: formData => axios.post('/api/v1/sessions', formData),
-                message: '提交成功'
+                success: () => {
+                    window.alert('登录成功')
+                    const query = qs.parse(window.location.search.slice(1))
+                    window.location.href = query.returnTo.toString()
+                }
             }
         }
     )
