@@ -1,4 +1,3 @@
-import {getPost, getPostIDs} from 'lib/posts'
 import {GetServerSideProps, NextPage} from 'next'
 import {getDatabaseConnection} from '../../lib/getDatabaseConnection'
 import {Post} from '../../src/entity/Post'
