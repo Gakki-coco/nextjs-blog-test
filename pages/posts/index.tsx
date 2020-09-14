@@ -3,6 +3,7 @@ import {getDatabaseConnection} from 'lib/getDatabaseConnection'
 import {Post} from 'src/entity/Post'
 import Link from 'next/link'
 import qs from 'querystring'
+import {usePager} from 'hooks/usePager'
 
 type Props = {
     posts: Post[]
@@ -12,7 +13,8 @@ type Props = {
     totalPage: number
 }
 const PostsIndex: NextPage<Props> = (props) => {
-    const {posts} = props
+    const {posts, count, page, totalPage} = props
+    const {pager} = usePager({count, page, totalPage})
 
     return (
         <div>
@@ -26,20 +28,8 @@ const PostsIndex: NextPage<Props> = (props) => {
             )}
 
             <footer>
-                共 {props.count} 篇文章，当前是第 {props.page} / {props.totalPage} 页
-                {
-                    props.page !== 1 &&
-                    <Link href={`?page=${props.page - 1}`}>
-                        <a>上一页</a>
-                    </Link>
-                }
+                {pager}
 
-                {
-                    props.page < props.totalPage &&
-                    <Link href={`?page=${props.page + 1}`}>
-                        <a>下一页</a>
-                    </Link>
-                }
 
             </footer>
         </div>
